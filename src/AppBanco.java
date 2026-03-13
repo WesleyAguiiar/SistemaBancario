@@ -1,7 +1,10 @@
-public class Main {
+import service.BancoService;
+
+public class AppBanco {
     public static void main(String[] args) {
 
-        Banco banco = new Banco();
-        banco.menuInicial();
+        BancoService bancoService = new BancoService();
+        bancoService.cadastrarConta();
+        bancoService.login();
     }
 }
