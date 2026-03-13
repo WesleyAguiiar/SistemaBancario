@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class BancoController {
 
     Scanner sc = new Scanner(System.in);
-    UserDTO userDTO;
 
     public UserDTO menuCadastro(){
 
@@ -28,7 +27,7 @@ public class BancoController {
             tipoConta = verificarInteiro();
 
         } while (tipoConta != 1 && tipoConta != 2);
-        return userDTO = new UserDTOCadastro(nomeTitular, senha, tipoConta);
+        return new UserDTOCadastro(nomeTitular, senha, tipoConta);
     }
 
     public UserDTO menuLogin(){
@@ -39,7 +38,7 @@ public class BancoController {
         System.out.print("Digite a sua senha: ");
         String senha = sc.nextLine();
 
-        return userDTO = new UserDTOLogin(numeroConta, senha);
+        return new UserDTOLogin(numeroConta, senha);
     }
 
     public int menuInicial(){
@@ -82,7 +81,7 @@ public class BancoController {
     }
 
     public double dadosSaque(){
-        System.out.println("--------------- DEPOSITO ---------------\n");
+        System.out.println("--------------- SAQUE ---------------\n");
         return verificarDouble();
     }
 
@@ -97,12 +96,12 @@ public class BancoController {
         System.out.println("Digite a senha da sua conta: ");
         String senha = sc.nextLine();
 
-        return userDTO = new UserDTOTransferencia(numeroConta, valor, senha);
+        return new UserDTOTransferencia(numeroConta, valor, senha);
     }
 
     double verificarDouble(){
         while(true){
-            System.out.print("Digite o valor: ");
+            System.out.print("\nDigite o valor: ");
             try {
                 return Double.parseDouble(sc.nextLine());
             } catch (NumberFormatException e) {
@@ -113,7 +112,7 @@ public class BancoController {
 
     int verificarInteiro(){
         while (true){
-            System.out.print("Digite o valor: ");
+            System.out.print("\nDigite o valor: ");
             try {
                 return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e){

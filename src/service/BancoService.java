@@ -93,17 +93,15 @@ public class BancoService
     public void transferir(){
         UserDTO userDTO = bancoController.dadosTransferencia();
 
-        for (Conta conta : bancoRepository.getContas()){
-            if (userDTO.getNumeroConta() == conta.getNumeroConta()
-                || userDTO.getSenha().equals(userAtual.getSenha())){
+        Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
 
-                conta.depositar(userDTO.getValor());
-                userAtual.sacar(userDTO.getValor());
-                System.out.println("Info: Transferência realizada com sucesso!");
-                System.out.println("Saldo atual: R$ " + userAtual.getSaldo());
-                // Apenas para teste
-                System.out.println("Saldo da conta recebedora: " + conta.getSaldo());
-            }
+        if (conta != null && userDTO.getSenha().equals(userAtual.getSenha())){
+            conta.depositar(userDTO.getValor());
+            userAtual.sacar(userDTO.getValor());
+            System.out.println("Info: Transferência realizada com sucesso!");
+            System.out.println("Saldo atual: R$ " + userAtual.getSaldo());
+            // Apenas para teste
+            System.out.println("Saldo da conta recebedora: " + conta.getSaldo());
         }
     }
 }

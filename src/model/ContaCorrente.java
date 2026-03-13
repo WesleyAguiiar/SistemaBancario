@@ -23,7 +23,8 @@ public class ContaCorrente extends Conta
         } else {
             saldo -= valor;
         } if (saldo > 2){
-            System.out.println("Info Conta Corrente: A taxa para saque de R$ 2,00 foi aplicada.");
+            System.out.println("Info Conta Corrente: A taxa para " +
+                    "saque/transferência de R$ 2,00 foi aplicada.");
             saldo -= 2;
         }
     }

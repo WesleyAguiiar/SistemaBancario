@@ -15,4 +15,13 @@ public class BancoRepository
     public void adicionarConta(Conta conta) {
         this.contas.add(conta);
     }
+
+    public Conta buscarConta(int numeroConta){
+        for (Conta conta : contas){
+            if (conta.getNumeroConta() == numeroConta){
+                return conta;
+            }
+        }
+        return null;
+    }
 }
