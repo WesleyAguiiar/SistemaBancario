@@ -1,10 +1,11 @@
 package dto;
 
 public class UserDTO {
-    String nomeTitular;
-    String senha;
-    int tipoConta;
-    int numeroConta;
+    protected String nomeTitular;
+    protected String senha;
+    protected int tipoConta;
+    protected int numeroConta;
+    protected double valor;
 
     public String getNomeTitular() {
         return nomeTitular;
@@ -20,5 +21,9 @@ public class UserDTO {
 
     public int getNumeroConta() {
         return numeroConta;
+    }
+
+    public double getValor() {
+        return valor;
     }
 }

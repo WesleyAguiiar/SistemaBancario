@@ -6,7 +6,7 @@ public abstract class Conta {
     private int agencia; // Serão gerados automaticamente
     private String titular;
     private String senha;
-    private double saldo;
+    protected double saldo;
 
     public Conta(String titular, String senha, int conta, int agencia) {
         this.titular = titular;
@@ -15,21 +15,9 @@ public abstract class Conta {
         this.agencia = agencia;
     }
 
-    boolean depositar(double valor){
-        if (valor <= 0){
-            return false;
-        }
-        this.saldo += valor;
-        return true;
-    }
+    public void depositar(double valor){}
 
-    boolean sacar(double valor){
-        if (valor < this.saldo){
-            return false;
-        }
-        this.saldo -= valor;
-        return true;
-    }
+    public void sacar(double valor){}
 
     public int getNumeroConta() {
         return numeroConta;
@@ -59,6 +47,10 @@ public abstract class Conta {
 
     public void setTitular(String titular) {
         this.titular = titular;
+    }
+
+    public double getSaldo() {
+        return saldo;
     }
 
     @Override

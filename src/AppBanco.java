@@ -4,7 +4,7 @@ public class AppBanco {
     public static void main(String[] args) {
 
         BancoService bancoService = new BancoService();
-        bancoService.cadastrarConta();
-        bancoService.login();
+        bancoService.menuInicial();
+        bancoService.menuPrincipal();
     }
 }
