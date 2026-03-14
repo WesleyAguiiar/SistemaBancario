@@ -52,7 +52,7 @@ public class BancoService
                         continue;
                     case 4:
                         System.out.println("Titular: " + userAtual.getTitular()
-                                + "\nSaldo: " + userAtual.getSaldo());
+                                + "\nSaldo: R$ " + userAtual.getSaldo() + "\n");
                         continue;
                     case 0:
                         System.out.println("Info: Sistema encerrado.");
@@ -79,13 +79,10 @@ public class BancoService
     public Conta login(){
         UserDTO userDTO = bancoController.menuLogin();
 
-        for (Conta conta : bancoRepository.getContas()){
-            if (conta.getNumeroConta() == userDTO.getNumeroConta()){
-                if (conta.getSenha().equals(userDTO.getSenha())){
-                    System.out.println("Info: Login realizado com sucesso!");
-                    return conta;
-                }
-            }
+        Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
+        if (conta != null && bancoRepository.autenticar(conta, userDTO.getSenha())){
+            System.out.println("Info: Login realizado com sucesso.");
+            return conta;
         }
         return null;
     }
@@ -99,9 +96,7 @@ public class BancoService
             conta.depositar(userDTO.getValor());
             userAtual.sacar(userDTO.getValor());
             System.out.println("Info: Transferência realizada com sucesso!");
-            System.out.println("Saldo atual: R$ " + userAtual.getSaldo());
-            // Apenas para teste
-            System.out.println("Saldo da conta recebedora: " + conta.getSaldo());
+            System.out.println("Saldo atual: R$ " + userAtual.getSaldo() + "\n");
         }
     }
 }

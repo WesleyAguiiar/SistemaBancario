@@ -24,4 +24,8 @@ public class BancoRepository
         }
         return null;
     }
+
+    public boolean autenticar(Conta conta, String senha){
+        return conta.getSenha().equals(senha);
+    }
 }

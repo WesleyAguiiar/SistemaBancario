@@ -101,7 +101,7 @@ public class BancoController {
 
     double verificarDouble(){
         while(true){
-            System.out.print("\nDigite o valor: ");
+            System.out.print("\nDigite: ");
             try {
                 return Double.parseDouble(sc.nextLine());
             } catch (NumberFormatException e) {
@@ -112,7 +112,7 @@ public class BancoController {
 
     int verificarInteiro(){
         while (true){
-            System.out.print("\nDigite o valor: ");
+            System.out.print("\nDigite: ");
             try {
                 return Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e){
