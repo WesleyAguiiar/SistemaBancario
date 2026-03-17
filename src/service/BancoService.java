@@ -57,6 +57,7 @@ public class BancoService
                         continue;
                     case 5:
                         userAtual.aplicarTaxa();
+                        continue;
                     case 0:
                         System.out.println("Info: Sistema encerrado.");
                         System.exit(0);
@@ -96,10 +97,15 @@ public class BancoService
         Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
 
         if (conta != null && userDTO.getSenha().equals(userAtual.getSenha())){
-            conta.depositar(userDTO.getValor());
-            userAtual.sacar(userDTO.getValor());
-            System.out.println("Info: Transferência realizada com sucesso!");
-            System.out.println("Saldo atual: R$ " + userAtual.getSaldo() + "\n");
+            if (userAtual.getSaldo() < userDTO.getValor()){
+                System.out.println("Erro: Saldo insuficiente para realizar a transferência.");
+            } else {
+                userAtual.sacar(userDTO.getValor());
+                conta.depositar(userDTO.getValor());
+
+                System.out.println("Info: Transferência realizada com sucesso!");
+                System.out.println("Saldo atual: R$ " + userAtual.getSaldo() + "\n");
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ public abstract class Conta implements TaxaMensal{
     private int agencia;
     private String titular;
     private String senha;
-    protected double saldo;
+    private double saldo;
 
     public Conta(String titular, String senha, int conta, int agencia) {
         this.titular = titular;
@@ -15,9 +15,9 @@ public abstract class Conta implements TaxaMensal{
         this.agencia = agencia;
     }
 
-    public void depositar(double valor){}
+    public abstract void depositar(double valor);
 
-    public void sacar(double valor){}
+    public abstract void sacar(double valor);
 
     public int getNumeroConta() {
         return numeroConta;
@@ -35,12 +35,19 @@ public abstract class Conta implements TaxaMensal{
         return saldo;
     }
 
+    public void adicionarSaldo(double saldo) {
+        this.saldo += saldo;
+    }
+
+    public void diminuirSaldo(double valor){
+        this.saldo -= valor;
+    }
+
     @Override
     public String toString() {
         return "Titular: " + titular +
                 "\nConta: " + numeroConta +
                 "\nAgencia: " + agencia +
-                "\nSenha: " + senha +
                 "\nSaldo: " + saldo;
     }
 }

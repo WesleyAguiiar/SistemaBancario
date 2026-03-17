@@ -1,6 +1,6 @@
 package model;
 
-public class ContaPoupanca extends Conta implements TaxaMensal
+public class ContaPoupanca extends Conta
 {
     public ContaPoupanca(String titular, String senha, int conta, int agencia) {
         super(titular, senha, conta, agencia);
@@ -10,20 +10,20 @@ public class ContaPoupanca extends Conta implements TaxaMensal
         if (valor <= 0){
             System.out.println("Erro: O valor mínimo para depósito é de R$  1,00");
         } else {
-            this.saldo += valor;
+            this.adicionarSaldo(valor);
         }
     }
 
     public void sacar(double valor){
-        if (valor > this.saldo || this.saldo < 0){
+        if (valor > this.getSaldo() || this.getSaldo() < 0){
             System.out.println("Erro: Saldo insuficiente.");
         } else {
-            saldo -= valor;
+            this.diminuirSaldo(valor);
         }
     }
 
     @Override
     public void aplicarTaxa() {
-        this.saldo += saldo * 0.005;
+        this.adicionarSaldo(this.getSaldo() * 0.005);
     }
 }
