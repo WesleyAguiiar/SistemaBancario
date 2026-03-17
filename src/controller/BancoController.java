@@ -9,16 +9,16 @@ import java.util.Scanner;
 
 public class BancoController {
 
-    Scanner sc = new Scanner(System.in);
+    private final Scanner SCANNER = new Scanner(System.in);
 
     public UserDTO menuCadastro(){
 
         System.out.println("--------------- CADASTRO ---------------\n");
         System.out.print("Digite o seu nome: ");
-        String nomeTitular = sc.nextLine();
+        String nomeTitular = SCANNER.nextLine();
 
         System.out.print("Escolha uma senha: ");
-        String senha = sc.nextLine();
+        String senha = SCANNER.nextLine();
 
         int tipoConta;
 
@@ -36,7 +36,7 @@ public class BancoController {
         int numeroConta = verificarInteiro();
 
         System.out.print("Digite a sua senha: ");
-        String senha = sc.nextLine();
+        String senha = SCANNER.nextLine();
 
         return new UserDTOLogin(numeroConta, senha);
     }
@@ -64,10 +64,11 @@ public class BancoController {
             System.out.println("2. Realizar um saque");
             System.out.println("3. Realizar uma transferência");
             System.out.println("4. Consultar saldo");
+            System.out.println("5. Aplicar taxa mensal as contas");
             System.out.println("0. Encerrar programa\n");
             int opcao = verificarInteiro();
 
-            if (opcao < 0 || opcao > 4){
+            if (opcao < 0 || opcao > 5){
                 System.out.println("Erro: Opção inválida.");
             } else {
                 return opcao;
@@ -94,27 +95,27 @@ public class BancoController {
         double valor = verificarDouble();
 
         System.out.println("Digite a senha da sua conta: ");
-        String senha = sc.nextLine();
+        String senha = SCANNER.nextLine();
 
         return new UserDTOTransferencia(numeroConta, valor, senha);
     }
 
-    double verificarDouble(){
+    private double verificarDouble(){
         while(true){
             System.out.print("\nDigite: ");
             try {
-                return Double.parseDouble(sc.nextLine());
+                return Double.parseDouble(SCANNER.nextLine());
             } catch (NumberFormatException e) {
                 System.out.println("\nErro: Digite apenas números!");
             }
         }
     }
 
-    int verificarInteiro(){
+    private int verificarInteiro(){
         while (true){
             System.out.print("\nDigite: ");
             try {
-                return Integer.parseInt(sc.nextLine());
+                return Integer.parseInt(SCANNER.nextLine());
             } catch (NumberFormatException e){
                 System.out.println("\nErro: Digite apenas números!");
             }

@@ -1,9 +1,9 @@
 package model;
 
-public abstract class Conta {
+public abstract class Conta implements TaxaMensal{
 
-    private int numeroConta; // Serão gerados automaticamente
-    private int agencia; // Serão gerados automaticamente
+    private int numeroConta;
+    private int agencia;
     private String titular;
     private String senha;
     protected double saldo;
@@ -23,30 +23,12 @@ public abstract class Conta {
         return numeroConta;
     }
 
-    public void setNumeroConta(int numeroConta) {
-        this.numeroConta = numeroConta;
-    }
-
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) { this.senha = senha; }
-
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public void setAgencia(int agencia) {
-        this.agencia = agencia;
-    }
-
     public String getTitular() {
         return titular;
-    }
-
-    public void setTitular(String titular) {
-        this.titular = titular;
     }
 
     public double getSaldo() {

@@ -1,6 +1,6 @@
 package dto;
 
-public class UserDTO {
+public abstract class UserDTO {
     protected String nomeTitular;
     protected String senha;
     protected int tipoConta;

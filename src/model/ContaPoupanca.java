@@ -1,6 +1,6 @@
 package model;
 
-public class ContaPoupanca extends Conta
+public class ContaPoupanca extends Conta implements TaxaMensal
 {
     public ContaPoupanca(String titular, String senha, int conta, int agencia) {
         super(titular, senha, conta, agencia);
@@ -20,5 +20,10 @@ public class ContaPoupanca extends Conta
         } else {
             saldo -= valor;
         }
+    }
+
+    @Override
+    public void aplicarTaxa() {
+        this.saldo += saldo * 0.005;
     }
 }

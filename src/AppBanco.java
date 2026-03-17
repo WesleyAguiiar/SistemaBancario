@@ -5,6 +5,5 @@ public class AppBanco {
 
         BancoService bancoService = new BancoService();
         bancoService.menuInicial();
-        bancoService.menuPrincipal();
     }
 }

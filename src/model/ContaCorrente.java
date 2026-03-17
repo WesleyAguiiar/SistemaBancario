@@ -1,6 +1,6 @@
 package model;
 
-public class ContaCorrente extends Conta
+public class ContaCorrente extends Conta implements TaxaMensal
 {
     public ContaCorrente(String titular, String senha, int conta, int agencia) {
         super(titular, senha, conta, agencia);
@@ -27,6 +27,11 @@ public class ContaCorrente extends Conta
                     "saque/transferência de R$ 2,00 foi aplicada.");
             saldo -= 2;
         }
+    }
+
+    @Override
+    public void aplicarTaxa() {
+        saldo -= 12;
     }
 }
 

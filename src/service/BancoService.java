@@ -9,12 +9,12 @@ import repository.BancoRepository;
 
 public class BancoService
 {
-    BancoController bancoController = new BancoController();
-    BancoRepository bancoRepository = new BancoRepository();
-     private Conta userAtual;
+    private final BancoController bancoController = new BancoController();
+    private final BancoRepository bancoRepository = new BancoRepository();
+    private Conta userAtual;
 
-    int numeroConta = 999;
-    int numeroAgencia = 1999;
+    private int numeroConta = 999;
+    private int numeroAgencia = 1999;
 
     public void menuInicial(){
         while (true){
@@ -33,9 +33,10 @@ public class BancoService
                 }
             }
         }
+        menuPrincipal();
     }
 
-    public void menuPrincipal(){
+    private void menuPrincipal(){
         if (userAtual != null){
             while(true){
                 int opcao = bancoController.menuPrincipal();
@@ -54,6 +55,8 @@ public class BancoService
                         System.out.println("Titular: " + userAtual.getTitular()
                                 + "\nSaldo: R$ " + userAtual.getSaldo() + "\n");
                         continue;
+                    case 5:
+                        userAtual.aplicarTaxa();
                     case 0:
                         System.out.println("Info: Sistema encerrado.");
                         System.exit(0);
@@ -63,7 +66,7 @@ public class BancoService
         }
     }
 
-    public void cadastrarConta(){
+    private void cadastrarConta(){
         Conta conta;
         UserDTO userDTO = bancoController.menuCadastro();
 
@@ -76,7 +79,7 @@ public class BancoService
         System.out.println("O número da sua conta é: " + conta.getNumeroConta());
     }
 
-    public Conta login(){
+    private Conta login(){
         UserDTO userDTO = bancoController.menuLogin();
 
         Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
@@ -87,7 +90,7 @@ public class BancoService
         return null;
     }
 
-    public void transferir(){
+    private void transferir(){
         UserDTO userDTO = bancoController.dadosTransferencia();
 
         Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
