@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.SaldoInsuficienteException;
+
 public class ContaPoupanca extends Conta
 {
     public ContaPoupanca(String titular, String senha, int conta, int agencia) {
@@ -14,9 +16,9 @@ public class ContaPoupanca extends Conta
         }
     }
 
-    public void sacar(double valor){
+    public void sacar(double valor) throws SaldoInsuficienteException {
         if (valor > this.getSaldo() || this.getSaldo() < 0){
-            System.out.println("Erro: Saldo insuficiente.");
+            throw new SaldoInsuficienteException(String.valueOf(this.getSaldo()));
         } else {
             this.diminuirSaldo(valor);
         }

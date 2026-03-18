@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.SaldoInsuficienteException;
+
 public class ContaCorrente extends Conta
 {
     public ContaCorrente(String titular, String senha, int conta, int agencia) {
@@ -13,25 +15,25 @@ public class ContaCorrente extends Conta
             this.adicionarSaldo(valor);
         } if (this.getSaldo() > 2){
             System.out.println("Info Conta Corrente: A taxa para depósito de R$ 2,00 foi aplicada.");
-            this.diminuirSaldo(-2);
+            this.diminuirSaldo(2);
         }
     }
 
-    public void sacar(double valor){
+    public void sacar(double valor) throws SaldoInsuficienteException {
         if (valor > this.getSaldo() || this.getSaldo() < 0){
-            System.out.println("Erro: Saldo insuficiente.");
+            throw new SaldoInsuficienteException(String.valueOf(this.getSaldo()));
         } else {
             this.diminuirSaldo(valor);
         } if (this.getSaldo() > 2){
             System.out.println("Info Conta Corrente: A taxa para " +
                     "saque/transferência de R$ 2,00 foi aplicada.");
-            this.diminuirSaldo(-2);
+            this.diminuirSaldo(2);
         }
     }
 
     @Override
     public void aplicarTaxa() {
-        this.diminuirSaldo(-12);
+        this.diminuirSaldo(12);
     }
 }
 

@@ -1,3 +1,4 @@
+import model.ContaPoupanca;
 import service.BancoService;
 
 public class AppBanco {

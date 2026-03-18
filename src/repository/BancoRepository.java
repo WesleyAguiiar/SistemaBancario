@@ -1,5 +1,6 @@
 package repository;
 
+import exceptions.ContaNaoEncontradaException;
 import model.Conta;
 
 import java.util.ArrayList;
@@ -16,13 +17,13 @@ public class BancoRepository
         this.contas.add(conta);
     }
 
-    public Conta buscarConta(int numeroConta){
+    public Conta buscarConta(int numeroConta) throws ContaNaoEncontradaException {
         for (Conta conta : contas){
             if (conta.getNumeroConta() == numeroConta){
                 return conta;
             }
         }
-        return null;
+        throw new ContaNaoEncontradaException(numeroConta);
     }
 
     public boolean autenticar(Conta conta, String senha){

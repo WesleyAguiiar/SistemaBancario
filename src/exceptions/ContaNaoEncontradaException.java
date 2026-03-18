@@ -1,15 +1,8 @@
 package exceptions;
 
 public class ContaNaoEncontradaException extends RuntimeException {
-
-    /**
-
-     Os conceitos de exceptions ainda estão em fase de aprendizado,
-     em breve irei implementar excessões personalizadas.
-
-    **/
-    public ContaNaoEncontradaException(String message)
+    public ContaNaoEncontradaException(int numeroConta)
     {
-        super("A conta: " + message + " não foi encontrada!");
+        super("\nErro: A conta de nº " + numeroConta + " não foi encontrada!\n");
     }
 }
