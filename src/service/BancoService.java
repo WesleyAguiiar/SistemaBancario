@@ -83,10 +83,11 @@ public class BancoService {
 
     private Conta login() {
         // Adição de contas para teste.
-        Conta wesley = new ContaCorrente("Wesley", "123", numeroConta++, numeroAgencia++);
+
+        /*Conta wesley = new ContaCorrente("Wesley", "123", numeroConta++, numeroAgencia++);
         Conta joao = new ContaPoupanca("Joao", "123", numeroConta++, numeroAgencia++);
         bancoRepository.adicionarConta(wesley);
-        bancoRepository.adicionarConta(joao);
+        bancoRepository.adicionarConta(joao);*/
 
         // Início da função
 
@@ -106,17 +107,18 @@ public class BancoService {
     private void transferir() {
         UserDTO userDTO = bancoController.dadosTransferencia();
 
-        Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
-
-        if (conta != null && userDTO.getSenha().equals(userAtual.getSenha())) {
-            try {
+        try {
+            Conta conta = bancoRepository.buscarConta(userDTO.getNumeroConta());
+            if (userDTO.getSenha().equals(userAtual.getSenha())) {
                 userAtual.sacar(userDTO.getValor());
                 conta.depositar(userDTO.getValor());
                 System.out.println("Info: Transferência realizada com sucesso!");
                 System.out.println("Saldo atual: R$ " + userAtual.getSaldo() + "\n");
-            } catch (SaldoInsuficienteException e) {
-                System.out.println(e.getMessage());
+            } else {
+                System.out.println("Erro: Senha incorreta.");
             }
+        } catch (ContaNaoEncontradaException | SaldoInsuficienteException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

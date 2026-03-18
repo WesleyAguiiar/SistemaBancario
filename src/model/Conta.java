@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Conta implements TaxaMensal{
+import exceptions.SaldoInsuficienteException;
+
+public abstract class Conta  implements TaxaMensal{
 
     private int numeroConta;
     private int agencia;
@@ -17,7 +19,7 @@ public abstract class Conta implements TaxaMensal{
 
     public abstract void depositar(double valor);
 
-    public abstract void sacar(double valor);
+    public abstract void sacar(double valor) throws SaldoInsuficienteException;
 
     public int getNumeroConta() {
         return numeroConta;
